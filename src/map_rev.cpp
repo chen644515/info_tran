@@ -51,7 +51,6 @@ int main(int argc, char** argv)
     double w;
 
     while (1) {
-        // std::cout << "in\n";
         buffer = IR.run();
         IS.sendMsg(reply);
         timeStamp.sec = (uint32_t)buffer[0] | (((uint32_t)buffer[1]) << 8) | (((uint32_t)buffer[2]) << 16) | (((uint32_t)buffer[3]) << 24);
@@ -69,11 +68,6 @@ int main(int argc, char** argv)
         yy = decode(buffer, 64);
         zz = decode(buffer, 72);
         w = decode(buffer, 80);
-        // std::cout << x << ' ' << y << ' ' << z << '\n';
-        // std::cout << xx << ' ' << yy << ' ' << zz << ' ' << w << '\n';
-        // std::cout << resolution << '\n';
-        // for (int i = 0; i < 88; i++) std::cout << buffer[i] << ' ';
-        // std::cout << '\n';
         nav_msgs::OccupancyGrid msg; 
         msg.header.stamp = timeStamp;
         msg.info.map_load_time = mapLoadTime;
