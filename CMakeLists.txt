@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   nav_msgs
   sensor_msgs
+  pcl_conversions
 )
 
 
@@ -205,11 +206,11 @@ ${catkin_INCLUDE_DIRS}
 
 
 
-add_executable(img_send src/img_send.cpp)
-target_link_libraries(img_send
-  # ${OpenCV_LIBS}
-  ${catkin_LIBRARIES}
-)
+# add_executable(img_send src/img_send.cpp)
+# target_link_libraries(img_send
+#   # ${OpenCV_LIBS}
+#   ${catkin_LIBRARIES}
+# )
 
 add_executable(imu_send src/imu_send.cpp)
 target_link_libraries(imu_send
@@ -217,11 +218,11 @@ target_link_libraries(imu_send
   ${catkin_LIBRARIES}
 )
 
-add_executable(img_rev src/img_rev.cpp)
-target_link_libraries(img_rev
-  # ${OpenCV_LIBS}
-  ${catkin_LIBRARIES}
-)
+# add_executable(img_rev src/img_rev.cpp)
+# target_link_libraries(img_rev
+#   # ${OpenCV_LIBS}
+#   ${catkin_LIBRARIES}
+# )
 
 add_executable(imu_rev src/imu_rev.cpp)
 target_link_libraries(imu_rev
@@ -264,6 +265,18 @@ target_link_libraries(map_send
 
 add_executable(map_rev src/map_rev.cpp)
 target_link_libraries(map_rev
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(Point_rev src/Point_rev.cpp)
+target_link_libraries(Point_rev
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(Point_send src/Point_send.cpp)
+target_link_libraries(Point_send
   # ${OpenCV_LIBS}
   ${catkin_LIBRARIES}
 )

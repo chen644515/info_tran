@@ -101,15 +101,14 @@ int main(int argc, char** argv) {
     }
     IR.init();
     std::cout << "connect successfully\n";
-    std::vector<unsigned char> t(26);
-    for (int i = 0; i < 26; i++) t[i] = 'a' + i;
+
     std::vector<unsigned char> reply;
     while (ros::ok()) {
         ros::spinOnce();
         // std::cout << "flag: " << flag << '\n';
         if (flag == 1) {
             // std::cout << "send\n";
-            std::cout << mapInfo.size() << '\n';
+            // std::cout << mapInfo.size() << '\n';
             IS.sendMsg(mapInfo);
             reply = IR.run();
             if (reply.size() != 2 && reply[0] != 'O' && reply[1] != 'K') {

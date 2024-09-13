@@ -14,18 +14,14 @@
 #include <signal.h>
 #include <sensor_msgs/CameraInfo.h>
 
-<<<<<<< HEAD
 #define Height 424
 #define Width 400
 
 // #include "threadpool.hpp"
-=======
->>>>>>> 29a0b3db0e706e557e46558b5ed0c525884ad7a2
 
 using namespace cv;
 using namespace std;
 
-<<<<<<< HEAD
 
 ros::Time timestamp;
 struct time_st{
@@ -44,9 +40,6 @@ void signalHandler(int signum)
 
 
 uint8_t flag = 0;
-=======
-ros::Time timestamp;         // 发送图片时间戳
->>>>>>> 29a0b3db0e706e557e46558b5ed0c525884ad7a2
 
 std::queue<int> socketq;
 struct time_st{                                     
@@ -123,11 +116,6 @@ int ImageRev::run()
     imgSize = (static_cast<uint16_t>(head[7]) << 24) | (static_cast<uint16_t>(head[6]) << 16) | (static_cast<uint16_t>(head[5]) << 8) | static_cast<uint16_t>(head[4]);
     t.nec = (static_cast<uint16_t>(head[11]) << 24) | (static_cast<uint16_t>(head[10]) << 16) | (static_cast<uint16_t>(head[9]) << 8) | static_cast<uint16_t>(head[8]);
     t.snec = (static_cast<uint16_t>(head[15]) << 24) | (static_cast<uint16_t>(head[14]) << 16) | (static_cast<uint16_t>(head[13]) << 8) | static_cast<uint16_t>(head[12]);
-<<<<<<< HEAD
-
-=======
-    std::cout << "dddd\n";
->>>>>>> 29a0b3db0e706e557e46558b5ed0c525884ad7a2
     vector<uchar> buffer(imgSize);
     for (int i = 0; i < imgSize; i++) {
         uchar s;
@@ -198,10 +186,7 @@ int AskSend::init()
     }
 
     if (connect(sock, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) == -1) {
-<<<<<<< HEAD
         // std::cout << "Error: Connection failed.\n";
-=======
->>>>>>> 29a0b3db0e706e557e46558b5ed0c525884ad7a2
         close(sock);
         return 1;
     }
@@ -349,7 +334,6 @@ int main(int argc, char **argv) {
 
         while (asksend1.init() != 0) {
 
-<<<<<<< HEAD
     if (imgrev8.init() != 0) {
         std::cout << "imgrev8 failed\n";
         return 1;
@@ -414,32 +398,6 @@ int main(int argc, char **argv) {
         // return 1;
     }
     std::cout << "asksend8 successfully\n";
-=======
-        }
-        std::cout << "asksend1 successfully\n";
-        // usleep(1000000);
-        while (asksend2.init() != 0) {
-
-        }
-        std::cout << "asksend2 successfully\n";
-        // usleep(1000000);
-        while (asksend3.init() != 0) {
-
-        }
-        std::cout << "asksend3 successfully\n";
-        // usleep(1000000);
-        while (asksend4.init() != 0) {
-
-        }
-        std::cout << "asksend4 successfully\n";
-        // usleep(1000000);
-        while (asksend5.init() != 0) {
-
-        }
-        std::cout << "asksend5 successfully\n";
-        // usleep(1000000);
-        while (asksend6.init() != 0) {
->>>>>>> 29a0b3db0e706e557e46558b5ed0c525884ad7a2
 
         }
         std::cout << "asksend6 successfully\n";
@@ -452,7 +410,6 @@ int main(int argc, char **argv) {
         while (asksend8.init() != 0) {
     
         }
-<<<<<<< HEAD
         cv::hconcat(imgrev1.image, imgrev2.image, img1);
         cv::hconcat(imgrev3.image, imgrev4.image, img2);
         cv::hconcat(imgrev5.image, imgrev6.image, img3);
@@ -495,9 +452,6 @@ int main(int argc, char **argv) {
         info_pub_left.publish(msg_left);
         info_pub_right.publish(msg_right);
 
-=======
-        std::cout << "asksend8 successfully\n";
->>>>>>> 29a0b3db0e706e557e46558b5ed0c525884ad7a2
 
         string s = "OK";
         
