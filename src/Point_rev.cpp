@@ -97,14 +97,15 @@ int main(int argc, char** argv)
         for (int i = 0; i < output.data.size(); i++) {
             output.data[i] = buffer[i + 26];
         }
-        if (count == 0) {
-            for (int i = 0; i < output.data.size(); i++) {
-                std::cout << (int)(output.data[i]) << '\n';
-            }
-            count = 1;
-        }
+        /* test */
+        // if (count == 0) {
+        //     for (int i = 0; i < output.data.size(); i++) {
+        //         std::cout << (int)(output.data[i]) << '\n';
+        //     }
+        //     count = 1;
+        // }
         pointcloud_pub.publish(output);
-        // std::cout << "pub succeffully\n";
+        std::cout << "pub succeffully\n";
 
         // 等待下一次循环
         ros::spinOnce();

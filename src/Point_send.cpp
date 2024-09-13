@@ -54,12 +54,13 @@ int getInfo(const sensor_msgs::PointCloud2ConstPtr& msg)
     for(; pos < info.size(); pos++) {
         info[pos] = msg->data[pos - 26];
     }
-    if (count == 0) {
-        for (int i = 0; i < msg->data.size(); i++) {
-            std::cout << (int)(msg->data[i]) << '\n';
-        }
-        count = 1;
-    }
+    /* test */
+    // if (count == 0) {
+    //     for (int i = 0; i < msg->data.size(); i++) {
+    //         std::cout << (int)(msg->data[i]) << '\n';
+    //     }
+    //     count = 1;
+    // }
     return 0;
 
 }
