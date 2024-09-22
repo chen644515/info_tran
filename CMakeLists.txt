@@ -287,6 +287,20 @@ target_link_libraries(test11
   ${catkin_LIBRARIES}
 )
 
+add_executable(postrue_send src/postrue_send.cpp)
+target_link_libraries(postrue_send
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+
+add_executable(postrue_rev src/postrue_rev.cpp)
+target_link_libraries(postrue_rev
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+
 
 #############
 ## Testing ##
