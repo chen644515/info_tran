@@ -31,6 +31,8 @@ struct postrue
     double dy;
     double dz;
     double w;
+    uint32_t sec;
+    uint32_t nsec;
 };
 
 int main(int argc, char** argv) {
@@ -52,7 +54,10 @@ int main(int argc, char** argv) {
     P.dy = 5;
     P.dz = 6;
     P.w = 788888;
+    P.sec = 34874;
+    P.nsec = 13232;
     int len = sizeof(postrue);
+    std::cout << len << '\n';
     std::vector<unsigned char> postrueInfo(len);
     int pos = 0;
     imcode(postrueInfo, pos, 0, P.x, 1);
@@ -62,8 +67,11 @@ int main(int argc, char** argv) {
     imcode(postrueInfo, pos, 0, P.dy, 1);
     imcode(postrueInfo, pos, 0, P.dz, 1);
     imcode(postrueInfo, pos, 0, P.w, 1);
+    imcode(postrueInfo, pos, P.sec, 0, 0);
+    imcode(postrueInfo, pos, P.nsec, 0, 0);
 
-
+    // for (int i = 0; i < len; i++) std::cout << postrueInfo[i] << ' ';
+    // std::cout << '\n';
     std::vector<unsigned char> reply;
     while (1) {
         
