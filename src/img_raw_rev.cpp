@@ -200,10 +200,14 @@ int main(int argc, char **argv) {
     ros::Publisher image_pub_right = nh.advertise<sensor_msgs::Image>("/camera/color/image", 10);
 
     {
-        ImageRev imgrev1(8881);
-        ImageRev imgrev2(8882);
-        ImageRev imgrev3(8883);
-        ImageRev imgrev4(8884);
+        ImageRev imgrev1(7881);
+        ImageRev imgrev2(7882);
+        ImageRev imgrev3(7883);
+        ImageRev imgrev4(7884);
+        ImageRev imgrev5(7885);
+        ImageRev imgrev6(7886);
+        ImageRev imgrev7(7887);
+        ImageRev imgrev8(7888);
 
 
         if (imgrev1.init() != 0) {
@@ -234,33 +238,61 @@ int main(int argc, char **argv) {
             std::cout << "imgrev4 successfully\n";
         }
 
+        if (imgrev5.init() != 0) {
+            std::cout << "imgrev5 failed\n";
+            return 1;
+        } else {
+            std::cout << "imgrev5 successfully\n";
+        }
+
+        if (imgrev6.init() != 0) {
+            std::cout << "imgrev6 failed\n";
+            return 1;
+        } else {
+            std::cout << "imgrev6 successfully\n";
+        }
+
+        if (imgrev7.init() != 0) {
+            std::cout << "imgrev7 failed\n";
+            return 1;
+        } else {
+            std::cout << "imgrev7 successfully\n";
+        }
+
+        if (imgrev8.init() != 0) {
+            std::cout << "imgrev8 failed\n";
+            return 1;
+        } else {
+            std::cout << "imgrev8 successfully\n";
+        }
+
         std::cout << "d1\n";
         usleep(2000000);
         AskSend asksend1(SERVER_IP, 9991);
-        AskSend asksend2(SERVER_IP, 9992);
-        AskSend asksend3(SERVER_IP, 9993);
-        AskSend asksend4(SERVER_IP, 9994);
+        // AskSend asksend2(SERVER_IP, 9992);
+        // AskSend asksend3(SERVER_IP, 9993);
+        // AskSend asksend4(SERVER_IP, 9994);
         std::cout << "successfully\n";
 
         while (asksend1.init() != 0) {
 
         }
         std::cout << "asksend1 successfully\n";
-        // usleep(1000000);
-        while (asksend2.init() != 0) {
+        // // usleep(1000000);
+        // while (asksend2.init() != 0) {
 
-        }
-        std::cout << "asksend2 successfully\n";
-        // usleep(1000000);
-        while (asksend3.init() != 0) {
+        // }
+        // std::cout << "asksend2 successfully\n";
+        // // usleep(1000000);
+        // while (asksend3.init() != 0) {
 
-        }
-        std::cout << "asksend3 successfully\n";
-        // usleep(1000000);
-        while (asksend4.init() != 0) {
+        // }
+        // std::cout << "asksend3 successfully\n";
+        // // usleep(1000000);
+        // while (asksend4.init() != 0) {
 
-        }
-        std::cout << "asksend4 successfully\n";
+        // }
+        // std::cout << "asksend4 successfully\n";
 
         string s = "OK";
         
@@ -276,22 +308,30 @@ int main(int argc, char **argv) {
             if (imgrev1.run() != 0 ||
                 imgrev2.run() != 0 ||
                 imgrev3.run() != 0 ||
-                imgrev4.run() != 0
+                imgrev4.run() != 0 ||
+                imgrev5.run() != 0 ||
+                imgrev6.run() != 0 ||
+                imgrev7.run() != 0 ||
+                imgrev8.run() != 0
                 ) {
                 std::cout << "error exit\n";
                 break;
             }
 
-            if (asksend1.askSend(s) != 0 ||
-                asksend2.askSend(s) != 0 ||
-                asksend3.askSend(s) != 0 ||
-                asksend4.askSend(s) != 0
+            if (asksend1.askSend(s) != 0
+                // asksend2.askSend(s) != 0 ||
+                // asksend3.askSend(s) != 0 ||
+                // asksend4.askSend(s) != 0
                 ) {
                 std::cout << "error1 exit\n";
                 break;
             }
             cv::hconcat(imgrev1.image, imgrev2.image, img1);
-            cv::hconcat(imgrev3.image, imgrev4.image, img2);
+            cv::hconcat(img1, imgrev3.image, img1);
+            cv::hconcat(img1, imgrev4.image, img1);
+            cv::hconcat(imgrev5.image, imgrev6.image, img2);
+            cv::hconcat(img2, imgrev7.image, img2);
+            cv::hconcat(img2, imgrev8.image, img2);
             cv::vconcat(img1, img2, img);
 
             timestamp.sec = t.nec;

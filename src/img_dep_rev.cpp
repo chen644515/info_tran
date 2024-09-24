@@ -204,6 +204,10 @@ int main(int argc, char **argv) {
         ImageRev imgrev2(8886);
         ImageRev imgrev3(8887);
         ImageRev imgrev4(8888);
+        ImageRev imgrev5(8889);
+        ImageRev imgrev6(8890);
+        ImageRev imgrev7(8891);
+        ImageRev imgrev8(8892);
 
 
         if (imgrev1.init() != 0) {
@@ -233,34 +237,44 @@ int main(int argc, char **argv) {
         } else {
             std::cout << "imgrev4 successfully\n";
         }
+        if (imgrev5.init() != 0) {
+            std::cout << "imgrev5 failed\n";
+            return 1;
+        } else {
+            std::cout << "imgrev5 successfully\n";
+        }
+
+        if (imgrev6.init() != 0) {
+            std::cout << "imgrev6 failed\n";
+            return 1;
+        } else {
+            std::cout << "imgrev6 successfully\n";
+        }
+
+        if (imgrev7.init() != 0) {
+            std::cout << "imgrev7 failed\n";
+            return 1;
+        } else {
+            std::cout << "imgrev7 successfully\n";
+        }
+
+        if (imgrev8.init() != 0) {
+            std::cout << "imgrev8 failed\n";
+            return 1;
+        } else {
+            std::cout << "imgrev8 successfully\n";
+        }
 
         std::cout << "d1\n";
         usleep(2000000);
-        AskSend asksend1(SERVER_IP, 9995);
-        AskSend asksend2(SERVER_IP, 9996);
-        AskSend asksend3(SERVER_IP, 9997);
-        AskSend asksend4(SERVER_IP, 9998);
+        AskSend asksend1(SERVER_IP, 9985);
+
         std::cout << "successfully\n";
 
         while (asksend1.init() != 0) {
 
         }
         std::cout << "asksend1 successfully\n";
-        // usleep(1000000);
-        while (asksend2.init() != 0) {
-
-        }
-        std::cout << "asksend2 successfully\n";
-        // usleep(1000000);
-        while (asksend3.init() != 0) {
-
-        }
-        std::cout << "asksend3 successfully\n";
-        // usleep(1000000);
-        while (asksend4.init() != 0) {
-
-        }
-        std::cout << "asksend4 successfully\n";
 
         string s = "OK";
         
@@ -276,28 +290,31 @@ int main(int argc, char **argv) {
             if (imgrev1.run() != 0 ||
                 imgrev2.run() != 0 ||
                 imgrev3.run() != 0 ||
-                imgrev4.run() != 0
+                imgrev4.run() != 0 ||
+                imgrev5.run() != 0 ||
+                imgrev6.run() != 0 ||
+                imgrev7.run() != 0 ||
+                imgrev8.run() != 0
                 ) {
                 std::cout << "error exit\n";
                 break;
             }
 
-            if (asksend1.askSend(s) != 0 ||
-                asksend2.askSend(s) != 0 ||
-                asksend3.askSend(s) != 0 ||
-                asksend4.askSend(s) != 0
-                ) {
+            if (asksend1.askSend(s) != 0) {
                 std::cout << "error1 exit\n";
                 break;
             }
             cv::hconcat(imgrev1.image, imgrev2.image, img1);
-            cv::hconcat(imgrev3.image, imgrev4.image, img2);
+            cv::hconcat(img1, imgrev3.image, img1);
+            cv::hconcat(img1, imgrev4.image, img1);
+            cv::hconcat(imgrev5.image, imgrev6.image, img2);
+            cv::hconcat(img2, imgrev7.image, img2);
+            cv::hconcat(img2, imgrev8.image, img2);
             cv::vconcat(img1, img2, img);
 
             timestamp.sec = t.nec;
             timestamp.nsec = t.snec;
 
-            // cout << "timestamp:" << timestamp.sec << ' ' << timestamp.nsec << '\n';
 
             ros::Time time_now = timestamp;
 
@@ -309,16 +326,7 @@ int main(int argc, char **argv) {
             ros_image_rgb.header.frame_id = "camera_color_optical_frame_right";
             ros_image_rgb.header.seq = count;
             ros_image_rgb.header.stamp = time_now; 
-            // if (count == 0) {
-            //     for (int y = 0; y < img.rows; ++y) {
-            //         for (int x = 0; x < img.cols; ++x) {
-            //             // 获取每个像素的值
-            //             uint16_t value = img.at<uint16_t>(y, x);
-            //             if (value > 1000) std::cout << "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\n";
-            //             std::cout << "Pixel (" << x << ", " << y << "): " << value << '\n';
-            //         }
-            //     }
-            // }
+
 
             
             image_pub_right.publish(ros_image_rgb);
