@@ -300,6 +300,85 @@ target_link_libraries(postrue_rev
   ${catkin_LIBRARIES}
 )
 
+add_executable(pose_rev src/pose_rev.cpp)
+target_link_libraries(pose_rev
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(goal_send src/goal_send.cpp)
+target_link_libraries(goal_send
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(goal_rev src/goal_rev.cpp)
+target_link_libraries(goal_rev
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(img_raw_gst_send src/img_raw_gst_send.cpp)
+target_link_libraries(img_raw_gst_send
+  ${catkin_LIBRARIES}
+  -lglib-2.0 -lgobject-2.0 -lgmodule-2.0
+  -lgstreamer-1.0
+  -lgstapp-1.0 -lgstbase-1.0
+)
+
+add_executable(img_gst_send_good src/img_gst_send_good.cpp)
+target_link_libraries(img_gst_send_good
+  ${catkin_LIBRARIES}
+  -lglib-2.0 -lgobject-2.0 -lgmodule-2.0
+  -lgstreamer-1.0
+  -lgstapp-1.0 -lgstbase-1.0
+)
+
+add_executable(img_gst_rev_good src/img_gst_rev_good.cpp)
+target_link_libraries(img_gst_rev_good
+  ${catkin_LIBRARIES}
+  -lglib-2.0 -lgobject-2.0 -lgmodule-2.0
+  -lgstreamer-1.0
+  -lgstapp-1.0 -lgstbase-1.0
+)
+
+add_executable(img_raw_gst_rev src/img_raw_gst_rev.cpp)
+target_link_libraries(img_raw_gst_rev
+  ${catkin_LIBRARIES}
+  -lglib-2.0 -lgobject-2.0 -lgmodule-2.0
+  -lgstreamer-1.0
+  -lgstapp-1.0 -lgstbase-1.0
+)
+
+add_executable(pos_send src/pos_send.cpp)
+target_link_libraries(pos_send
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(odom src/odom.cpp)
+target_link_libraries(odom
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(odom_start src/odom_start.cpp)
+target_link_libraries(odom_start
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(odom_pub src/odom_pub.cpp)
+target_link_libraries(odom_pub
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
+
+add_executable(udptest1207 src/udptest1207.cpp)
+target_link_libraries(udptest1207
+  # ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+)
 
 
 #############
